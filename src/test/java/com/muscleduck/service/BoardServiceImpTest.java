@@ -1,6 +1,8 @@
 package com.muscleduck.service;
 
 import com.muscleduck.dto.BoardDTO;
+import com.muscleduck.dto.PageRequestDTO;
+import com.muscleduck.dto.PageResultDTO;
 import com.muscleduck.repository.BoardRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -28,6 +30,18 @@ class BoardServiceImpTest {
 
         boardService.register(boardDTO);
 
+    }
+
+    @Test
+    @DisplayName("목록 처리 테스트")
+    void testlist(){
+        PageRequestDTO pageRequestDTO = new PageRequestDTO();
+
+        PageResultDTO<BoardDTO, Object[]> result = boardService.getList(pageRequestDTO);
+
+        for (BoardDTO boardDTO : result.getDtoList()){
+            System.out.println("boardDTO = " + boardDTO);
+        }
     }
 
 }
